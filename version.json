@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "release_date": "2026-11-17",
+  "title": "CleanSheet v1.0.0 - Official Enterprise Release",
+  "download_url": "https://github.com/cleansheet-studio/cleansheet/releases/latest/download/CleanSheet.exe",
+  "changelog": [
+    "Official Initial Enterprise Release of CleanSheet Studio",
+    "Complete Data Cleaning, Outlier Remediation, PII Masking & Fuzzy Merging",
+    "Smart String, Phone Normalizer (E.164) & Mixed Date Heuristic Parsers",
+    "Multi-Source SQL Connectors (SQLite, Postgres, MySQL) & REST API / JSON Flattening",
+    "Out-of-Core Big Data CSV Streaming Engine (500MB to 10GB+ support)",
+    "Password Encryption & Workbook Protection for Excel",
+    "Data Lineage Governance Audit Tracker & Executive PDF Certificates",
+    "Built-in In-App Auto-Updater System"
+  ],
+  "mandatory": false
+}
