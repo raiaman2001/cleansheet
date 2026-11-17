@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "release_date": "2026-11-17",
   "title": "CleanSheet v1.0.0 - Official Enterprise Release",
-  "download_url": "https://github.com/cleansheet-studio/cleansheet/releases/latest/download/CleanSheet.exe",
+  "download_url": "https://github.com/raiaman2001/cleansheet/releases/latest/download/CleanSheet_Setup_v1.0.exe",
   "changelog": [
     "Official Initial Enterprise Release of CleanSheet Studio",
     "Complete Data Cleaning, Outlier Remediation, PII Masking & Fuzzy Merging",
