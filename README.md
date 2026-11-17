@@ -82,7 +82,19 @@ CleanSheet/
 
 ---
 
-## 🚀 Getting Started
+## 💾 Download Windows Installer (.exe)
+
+For users who want to run CleanSheet directly without installing Python:
+
+1. Go to the **[Latest Release](https://github.com/raiaman2001/cleansheet/releases/latest)** page.
+2. Download the installer executable under Assets:
+   - 📥 **[Download CleanSheet_Setup_v1.0.exe](https://github.com/raiaman2001/cleansheet/releases/latest/download/CleanSheet_Setup_v1.0.exe)**
+3. Run `CleanSheet_Setup_v1.0.exe` and follow the setup wizard.
+4. Launch **CleanSheet** directly from your Desktop shortcut or Start Menu.
+
+---
+
+## 🚀 Developer Setup (Run from Source)
 
 ### Prerequisites
 
