@@ -196,7 +196,7 @@ class Metric(QWidget):
 class Window(QMainWindow):
     """Main application window for CleanSheet Desktop Studio."""
     PAGE_INFO = [
-        ("Overview", "A quick snapshot of your dataset health and next steps."),
+        ("Overview", ""),
         ("Uploaded Data", "Browse your imported spreadsheet rows, columns, and sheets."),
         ("Clean Data", "Fix formatting, remove errors, and tidy up your data."),
         ("Issue Review", "Review detected issues, unusual values, and helpful suggestions."),

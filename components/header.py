@@ -42,8 +42,9 @@ class ModernHeader(QFrame):
         self.title_lbl = QLabel("Overview")
         self.title_lbl.setObjectName("PageTitle")
         
-        self.subtitle_lbl = QLabel("A quick snapshot of your dataset health and next steps.")
+        self.subtitle_lbl = QLabel("")
         self.subtitle_lbl.setObjectName("PageSubtitle")
+        self.subtitle_lbl.setVisible(False)
         
         title_box.addWidget(self.title_lbl)
         title_box.addWidget(self.subtitle_lbl)
@@ -103,6 +104,7 @@ class ModernHeader(QFrame):
     def set_title(self, title: str, subtitle: str):
         self.title_lbl.setText(title)
         self.subtitle_lbl.setText(subtitle)
+        self.subtitle_lbl.setVisible(bool(subtitle and subtitle.strip()))
 
     def show_update_badge(self, version_str: str):
         self.btn_update.setText(f"⚡ Update Available ({version_str})")
