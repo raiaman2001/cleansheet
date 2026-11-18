@@ -72,35 +72,39 @@ class ReportsPage(QWidget):
         # 3. Export Action Bar
         export_card = Card(elevation=False)
         e_layout = QHBoxLayout(export_card)
-        e_layout.setContentsMargins(18, 12, 18, 12)
-        e_layout.setSpacing(12)
+        e_layout.setContentsMargins(12, 10, 12, 10)
+        e_layout.setSpacing(8)
         
-        self.btn_audit = QPushButton("Past Cleaning History")
+        self.btn_audit = QPushButton("Past History")
         self.btn_audit.setIcon(get_icon("database", "#64748B", 14))
+        self.btn_audit.setToolTip("View Past Cleaning History")
         self.btn_audit.clicked.connect(self.view_audit_clicked.emit)
         e_layout.addWidget(self.btn_audit)
         
         e_layout.addStretch(1)
         
-        self.btn_json = QPushButton("Save JSON Report")
+        self.btn_json = QPushButton("Save JSON")
         self.btn_json.setIcon(get_icon("code", "#64748B", 14))
+        self.btn_json.setToolTip("Save summary change report as JSON")
         self.btn_json.clicked.connect(self.save_json_clicked.emit)
         e_layout.addWidget(self.btn_json)
         
         self.btn_csv = QPushButton("Save as CSV")
         self.btn_csv.setIcon(get_icon("table", "#64748B", 14))
+        self.btn_csv.setToolTip("Export cleaned dataset as CSV")
         self.btn_csv.clicked.connect(self.save_csv_clicked.emit)
         e_layout.addWidget(self.btn_csv)
         
-        self.btn_pdf = QPushButton("Executive PDF Certificate")
+        self.btn_pdf = QPushButton("PDF Certificate")
         self.btn_pdf.setIcon(get_icon("shield", "#1E3A8A", 14))
+        self.btn_pdf.setToolTip("Generate formal Executive PDF Data Hygiene Certificate")
         self.btn_pdf.setStyleSheet("""
             QPushButton {
                 background-color: #EEF2FF;
                 color: #1E3A8A;
                 border: 1px solid #C7D2FE;
                 font-weight: 600;
-                padding: 6px 14px;
+                padding: 6px 10px;
                 border-radius: 6px;
             }
             QPushButton:hover {
@@ -110,7 +114,7 @@ class ReportsPage(QWidget):
         self.btn_pdf.clicked.connect(self.save_pdf_clicked.emit)
         e_layout.addWidget(self.btn_pdf)
         
-        self.btn_protected_excel = QPushButton("🔒 Password Encrypt Excel")
+        self.btn_protected_excel = QPushButton("🔒 Encrypt Excel")
         self.btn_protected_excel.setIcon(get_icon("shield", "#0D9488", 14))
         self.btn_protected_excel.setStyleSheet("""
             QPushButton {
@@ -118,7 +122,7 @@ class ReportsPage(QWidget):
                 color: #0D9488;
                 border: 1px solid #99F6E4;
                 font-weight: 600;
-                padding: 6px 14px;
+                padding: 6px 10px;
                 border-radius: 6px;
             }
             QPushButton:hover {
@@ -129,7 +133,8 @@ class ReportsPage(QWidget):
         self.btn_protected_excel.clicked.connect(self.save_protected_excel_clicked.emit)
         e_layout.addWidget(self.btn_protected_excel)
 
-        self.btn_excel = PrimaryButton("Download Excel File", icon_name="download")
+        self.btn_excel = PrimaryButton("Download Excel", icon_name="download")
+        self.btn_excel.setToolTip("Download cleaned dataset as Microsoft Excel (.xlsx)")
         self.btn_excel.clicked.connect(self.save_excel_clicked.emit)
         e_layout.addWidget(self.btn_excel)
         

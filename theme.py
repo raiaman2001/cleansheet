@@ -493,8 +493,8 @@ def generate_stylesheet(c: ThemeColors) -> str:
         color: {c.text_primary};
         border: 1px solid {c.border};
         border-radius: 8px;
-        padding: 8px 16px;
-        font-size: 13px;
+        padding: 6px 12px;
+        font-size: 12px;
         font-weight: 600;
     }}
     
