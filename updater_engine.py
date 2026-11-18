@@ -93,10 +93,9 @@ class UpdateDownloadThread(QThread):
             self.download_failed.emit(str(e))
 
 
-def apply_update_and_restart(new_exe_path: str):
-    """Replace running executable with newly downloaded one and restart cleanly.
-    Creates a temporary Windows PowerShell script that waits for parent PID to exit,
-    swaps the file, and relaunches CleanSheet.
+def apply_update_and_restart(new_installer_path: str):
+    """Silently run the new installer and relaunch CleanSheet without wizard dialogs,
+    just like VS Code / Antigravity background updates.
     """
     current_exe = sys.executable if getattr(sys, "frozen", False) else sys.argv[0]
     current_pid = os.getpid()
@@ -104,9 +103,12 @@ def apply_update_and_restart(new_exe_path: str):
     update_script = Path.home() / ".cleansheet" / "updates" / "apply_update.bat"
     update_script.parent.mkdir(parents=True, exist_ok=True)
 
-    # Windows batch updater script: waits for current process to terminate, replaces file, starts new exe
+    # Windows batch updater script:
+    # 1. Wait for CleanSheet to cleanly release its files
+    # 2. Run installer in /VERYSILENT mode with all dialogs suppressed
+    # 3. Relaunch CleanSheet and clean up
     bat_content = f"""@echo off
-timeout /t 1 /nobreak > nul
+timeout /t 2 /nobreak > nul
 :wait_loop
 tasklist /fi "pid eq {current_pid}" 2>nul | find "{current_pid}" > nul
 if %ERRORLEVEL% equ 0 (
@@ -114,15 +116,23 @@ if %ERRORLEVEL% equ 0 (
     goto wait_loop
 )
 
-copy /Y "{new_exe_path}" "{current_exe}" > nul
+:: Run installer silently in background
+"{new_installer_path}" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+
+:: Small buffer to ensure extraction completes
+timeout /t 2 /nobreak > nul
+
+:: Relaunch the application
 start "" "{current_exe}"
+
+:: Cleanup batch file
 del "%~f0"
 exit
 """
     with open(update_script, "w", encoding="utf-8") as f:
         f.write(bat_content)
 
-    # Launch batch script detached and exit current app
+    # Launch batch script detached and terminate running app cleanly
     subprocess.Popen(str(update_script), shell=True, creationflags=subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0)
     sys.exit(0)
 
