@@ -1,14 +1,17 @@
 {
-  "version": "1.1.0",
+  "version": "1.0.0",
   "release_date": "2026-11-18",
-  "title": "CleanSheet v1.1.0 - Clean UI & Enterprise Update",
-  "download_url": "https://github.com/raiaman2001/cleansheet/releases/latest/download/CleanSheet_Setup_v1.1.exe",
+  "title": "CleanSheet v1.0.0 - Official Enterprise Release",
+  "download_url": "https://github.com/raiaman2001/cleansheet/releases/latest/download/CleanSheet_Setup_v1.0.exe",
   "changelog": [
     "Cleaned Overview dashboard header UI",
-    "Performance improvements and bug fixes",
     "Complete Data Cleaning, Outlier Remediation, PII Masking & Fuzzy Merging",
     "Smart String, Phone Normalizer (E.164) & Mixed Date Heuristic Parsers",
-    "Multi-Source SQL Connectors & Big Data Streaming Support"
+    "Multi-Source SQL Connectors (SQLite, Postgres, MySQL) & REST API / JSON Flattening",
+    "Out-of-Core Big Data CSV Streaming Engine (500MB to 10GB+ support)",
+    "Password Encryption & Workbook Protection for Excel",
+    "Data Lineage Governance Audit Tracker & Executive PDF Certificates",
+    "Built-in In-App Auto-Updater System"
   ],
   "mandatory": false
 }
