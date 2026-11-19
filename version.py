@@ -1,5 +1,5 @@
 """CleanSheet Application Version and Release Metadata."""
-APP_VERSION = "1.0.0"
+APP_VERSION = "1.1.0"
 APP_NAME = "CleanSheet"
 UPDATE_CHECK_URL = "https://raw.githubusercontent.com/raiaman2001/cleansheet/main/version.json"
 GITHUB_REPO_URL = "https://github.com/raiaman2001/cleansheet"
