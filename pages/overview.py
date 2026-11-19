@@ -371,6 +371,7 @@ class OverviewPage(QWidget):
         on_trim_spaces: Optional[Callable] = None,
         on_autocast: Optional[Callable] = None,
         on_export: Optional[Callable] = None,
+        on_reset: Optional[Callable] = None,
         parent=None
     ):
         super().__init__(parent)
@@ -383,6 +384,7 @@ class OverviewPage(QWidget):
         self.on_trim_spaces = on_trim_spaces or on_workflow
         self.on_autocast = on_autocast or on_workflow
         self.on_export = on_export or (lambda: None)
+        self.on_reset = on_reset or (lambda: None)
         
         self._current_df: Optional[pd.DataFrame] = None
         self._cached_warnings: List[tuple] = []
@@ -455,6 +457,16 @@ class OverviewPage(QWidget):
         self.btn_export_summary.setCursor(Qt.PointingHandCursor)
         self.btn_export_summary.clicked.connect(self.on_export)
         btn_box.addWidget(self.btn_export_summary)
+
+        # Refresh / Clear Session Button
+        self.btn_refresh = QPushButton("Reset & Refresh")
+        self.btn_refresh.setIcon(get_icon("rotate-cw", "#64748B", 14))
+        self.btn_refresh.setFont(QFont("Segoe UI", 9, QFont.DemiBold))
+        self.btn_refresh.setFixedHeight(34)
+        self.btn_refresh.setCursor(Qt.PointingHandCursor)
+        self.btn_refresh.setToolTip("Reset the active dataset and clear session data (keeps history log intact)")
+        self.btn_refresh.clicked.connect(self.on_reset)
+        btn_box.addWidget(self.btn_refresh)
 
         hero_layout.addLayout(btn_box)
         main_layout.addWidget(hero_card)
@@ -819,7 +831,7 @@ class OverviewPage(QWidget):
             if mask.sum() and pd.to_numeric(s_clean, errors="coerce")[mask].notna().mean() >= 0.85:
                 convertible_cols += 1
             elif any(k in str(col).lower() for k in ["date", "time", "dob", "created", "updated"]):
-                dt = pd.to_datetime(df[col], errors="coerce", dayfirst=True)
+                dt = pd.to_datetime(df[col], errors="coerce", format="mixed")
                 mask_dt = df[col].notna() & df[col].astype("string").str.strip().ne("")
                 if mask_dt.sum() and dt[mask_dt].notna().mean() >= 0.70:
                     convertible_cols += 1

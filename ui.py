@@ -297,6 +297,7 @@ class Window(QMainWindow):
             on_trim_spaces=self.quick_trim_spaces,
             on_autocast=self.quick_autocast_types,
             on_export=lambda: self.go(7),
+            on_reset=self.reset_session,
             parent=self
         )
         self.page_import = ImportPage(on_browse=self.open_file, parent=self)
@@ -496,6 +497,56 @@ class Window(QMainWindow):
         except Exception as e:
             logging.exception("File import failed: %s", path)
             QMessageBox.critical(self, "Could not open file", f"The file could not be opened.\n\n{e}")
+
+    def reset_session(self):
+        """Reset the active dataset and clear session state without clearing SQLite audit history."""
+        reply = QMessageBox.question(
+            self,
+            "Reset Session",
+            "Are you sure you want to reset the current session?\n\nThis will unload the active dataset. Your past audit history will remain safe.",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+        if reply != QMessageBox.Yes:
+            return
+
+        self.df = None
+        self.cleaned = None
+        self.logs = None
+        self.original = None
+        self.issues = None
+        self.path = None
+        self.batch_results = None
+        self.sheet_names = []
+        self.current_sheet = ""
+        self.cleaned_sheets_dict = None
+
+        # Reset pages
+        self.page_overview.update_metrics(None, "")
+        self.page_overview.file_info_lbl.setText("No active file selected · Click Choose a Spreadsheet")
+        
+        # Reset Import page
+        self.page_import._current_df = None
+        self.page_import.drop_zone.setVisible(True)
+        self.page_import.meta_card.setVisible(False)
+        self.page_import._render_table(None)
+        
+        # Reset other pages
+        self.page_issues.set_issues_data(None)
+        self.page_compare.set_data(None, None)
+        self.page_reports.set_report_data(None, None, None)
+        self.page_workflow.set_available_sheets([])
+
+        # Hide Uploaded Data tab until next upload
+        self.sidebar.set_item_visible(1, False)
+
+        # Reset status bar
+        self.sb_status.setText("Ready · Import a CSV or Excel dataset to begin.")
+        self.sb_file_info.setText("No active file")
+
+        # Navigate to Overview
+        self.go(0)
+        ToastNotification.show_toast(self, "Session reset successfully", "info")
 
     def load_selected_sheet_by_name(self, sheet: str):
         if not self.path or not sheet:
