@@ -1,13 +1,13 @@
 {
-  "version": "1.1.0",
-  "release_date": "2026-11-18",
-  "title": "CleanSheet v1.1.0 - Clean UI & Enterprise Update",
-  "download_url": "https://github.com/raiaman2001/cleansheet/releases/latest/download/CleanSheet_Setup_v1.1.exe",
+  "version": "1.1.1",
+  "release_date": "2026-11-19",
+  "title": "CleanSheet v1.1.1 - Dashboard Reset & Performance Update",
+  "download_url": "https://github.com/raiaman2001/cleansheet/releases/latest/download/CleanSheet_Setup_v1.1.1.exe",
   "changelog": [
-    "Cleaned Overview dashboard header UI (removed redundant subtitle)",
-    "Fixed button layout and text clipping on Reports & Export bar",
-    "Optimized button padding and added informative tooltips",
-    "Performance improvements and PySide6 packaging fixes"
+    "Added 'Reset & Refresh' session button on Overview Dashboard",
+    "Cleaned session reset without clearing SQLite audit history",
+    "Silenced mixed date parsing warnings",
+    "Performance improvements & seamless background updater"
   ],
   "mandatory": false
 }

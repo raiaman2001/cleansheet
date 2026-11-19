@@ -1,6 +1,6 @@
 ; Inno Setup Script for CleanSheet
 #define MyAppName "CleanSheet"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.1.1"
 #define MyAppPublisher "CleanSheet Studio"
 #define MyAppExeName "CleanSheet.exe"
 
@@ -13,7 +13,7 @@ DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 OutputDir=dist_installer
-OutputBaseFilename=CleanSheet_Setup_v1.0
+OutputBaseFilename=CleanSheet_Setup_v1.1.1
 SetupIconFile=assets\icon.ico
 Compression=lzma2/ultra64
 SolidCompression=yes
