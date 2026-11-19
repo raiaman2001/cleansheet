@@ -3,7 +3,7 @@
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-blue.svg)](https://www.microsoft.com/windows)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
 [![GUI](https://img.shields.io/badge/UI-PySide6%20(Qt6)-orange.svg)](https://wiki.qt.io/Qt_for_Python)
-[![Release](https://img.shields.io/badge/Version-1.0.0-purple.svg)](https://github.com/)
+[![Release](https://img.shields.io/badge/Version-1.1.1-purple.svg)](https://github.com/)
 
 **CleanSheet** is an enterprise-grade desktop data preparation, cleaning, and profiling application built with Python and PySide6 (Qt6). It allows data analysts, engineers, and business teams to clean, validate, transform, and profile messy datasets locally without cloud dependencies.
 
@@ -88,8 +88,8 @@ For users who want to run CleanSheet directly without installing Python:
 
 1. Go to the **[Latest Release](https://github.com/raiaman2001/cleansheet/releases/latest)** page.
 2. Download the installer executable under Assets:
-   - 📥 **[Download CleanSheet_Setup_v1.0.exe](https://github.com/raiaman2001/cleansheet/releases/latest/download/CleanSheet_Setup_v1.0.exe)**
-3. Run `CleanSheet_Setup_v1.0.exe` and follow the setup wizard.
+   - 📥 **[Download CleanSheet_Setup_v1.1.1.exe](https://github.com/raiaman2001/cleansheet/releases/latest/download/CleanSheet_Setup_v1.1.1.exe)**
+3. Run `CleanSheet_Setup_v1.1.1.exe` and follow the setup wizard.
 4. Launch **CleanSheet** directly from your Desktop shortcut or Start Menu.
 
 ---
@@ -151,6 +151,17 @@ The compiled binaries will be output into the `dist/` directory.
 
 ### 2. Build Windows Setup Installer
 Compile `CleanSheet_Installer.iss` using **Inno Setup 6** to generate the production installer under `dist_installer/`.
+
+---
+
+## 🔄 Seamless In-App Auto-Updates
+
+CleanSheet includes an intelligent background updater inspired by modern developer tools (like VS Code & Antigravity):
+
+1. **Automatic Detection:** Whenever the application opens, a non-blocking background thread checks GitHub Releases for new updates without slowing down startup or interrupting offline users.
+2. **One-Click Notification:** If a newer version is released, an **`⚡ Update Available`** badge appears in the top navigation bar along with a detailed release notes popup.
+3. **Silent Background Upgrade:** Clicking **"Update & Restart Now"** downloads the latest installer in the background with a real-time progress bar.
+4. **Zero-Friction Relaunch:** CleanSheet cleanly closes itself, silently installs the update in the background (no setup wizards or manual clicking required), and immediately relaunches with the newest features and improvements.
 
 ---
 
